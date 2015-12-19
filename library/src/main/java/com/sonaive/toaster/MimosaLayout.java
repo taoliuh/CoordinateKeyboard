@@ -1,6 +1,7 @@
 package com.sonaive.toaster;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -18,6 +19,7 @@ public class MimosaLayout extends ViewGroup {
     private View mContentView;
     private View mInputPanel;
     private Toaster mToaster;
+    private Rect mRect;
 
     public MimosaLayout(Context context) {
         super(context);
@@ -39,6 +41,7 @@ public class MimosaLayout extends ViewGroup {
         }
         mContentView = getChildAt(0);
         mInputPanel = getChildAt(1);
+        mRect = new Rect();
     }
 
     @Override
@@ -116,6 +119,10 @@ public class MimosaLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        ViewGroupUtils.getDescendantRect(this, mInputPanel, mRect);
+        if (mRect.contains((int) ev.getX(), (int) ev.getY())) {
+            return super.onInterceptTouchEvent(ev);
+        }
         if (ev.getActionMasked() == MotionEvent.ACTION_DOWN && mToaster != null && Toaster.isShown()) {
             mToaster.hideSoftKeyboard(mInputPanel);
             mToaster.hideView();
