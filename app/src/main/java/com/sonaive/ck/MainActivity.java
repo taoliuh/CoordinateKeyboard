@@ -1,20 +1,28 @@
 package com.sonaive.ck;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+
+import com.sonaive.toaster.MimosaLayout;
+import com.sonaive.toaster.Toaster;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private CoordinatorLayout mRootView;
+    private Toaster mToaster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +34,34 @@ public class MainActivity extends AppCompatActivity {
         for( int i = 0; i < 30; i++) {
             data.add(String.valueOf(i));
         }
+        mRootView = (CoordinatorLayout) findViewById(R.id.root_view);
+        final MimosaLayout mimosaLayout = (MimosaLayout) findViewById(R.id.mimosa);
         ListView listView = (ListView) findViewById(R.id.list_view);
-        Button fab = (Button) findViewById(R.id.fab);
+        EditText editText = (EditText) findViewById(R.id.edit_text);
         listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data));
-        fab.setOnClickListener(new View.OnClickListener() {
+        editText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_DOWN && !Toaster.isShown()) {
+                    mToaster = Toaster.make(mRootView);
+                    mimosaLayout.setToaster(mToaster);
+                    mToaster.showView();
+                }
+                return false;
             }
         });
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (Toaster.isShown()) {
+                mToaster.hideView();
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

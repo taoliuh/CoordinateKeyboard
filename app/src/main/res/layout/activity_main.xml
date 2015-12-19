@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -21,13 +22,58 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:id="@+id/fab"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
+    <com.sonaive.toaster.MimosaLayout
+        android:id="@+id/mimosa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:text="UP"/>
+        app:layout_behavior="com.sonaive.toaster.MimosaBehavior" >
 
-    <include layout="@layout/content_main" />
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/edit_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#eeeeee" />
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="75dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/chat_input_box"
+                android:hint="聊天"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:singleLine="true"
+                android:textColor="#6c6c6c"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="12dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="发送"
+                android:textColor="#ff4e47" />
+
+        </FrameLayout>
+
+    </com.sonaive.toaster.MimosaLayout>
 
 </android.support.design.widget.CoordinatorLayout>
