@@ -7,6 +7,7 @@
 
 ``
 android:windowSoftInputMode="adjustNothing"
+``
 
 windowSoftInputMode 只能是 adjustNothing， 点击输入框弹出键盘并不会改变窗体的大小,整个view只是做了
 translationY的位移动画，但这样也没办法知道soft keyboard 的高度，以及监听到键盘弹出或收缩。所以目前
@@ -21,14 +22,15 @@ adjustResize, 然后将键盘高度缓存起来。一般来说，用户不会无
 
 ``
 Whole Android development community has been asking YEARS !!! for this for, I just can't believe that we gotta look for hacks instead a proper API call.
+``
 
 #效果图
 分别是微信、CoordinateLayout、探探
 
 <td>
-    <img src="capture01.gif" width="320" height="569" />
-    <img src="capture02.gif" width="320" height="569" />
-    <img src="capture03.gif" width="320" height="569" />
+    <img src="captures/capture01.gif" width="320" height="569" />
+    <img src="captures/capture02.gif" width="320" height="569" />
+    <img src="captures/capture03.gif" width="320" height="569" />
 </td>
 
 
@@ -38,5 +40,5 @@ ResizeLayout来自这位作者。
 #LICENSE
 ``
 MIT LICENSE
-
+``
 
