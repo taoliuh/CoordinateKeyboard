@@ -38,6 +38,9 @@ Whole Android development community has been asking YEARS !!! for this for, I ju
 多花点时间完全可以做成探探的效果，再推荐一个项目 https://github.com/w446108264/XhsEmoticonsKeyboard
 ResizeLayout来自这位作者。
 
+#DEMO
+[apk download](captures/app-debug.apk)
+
 #LICENSE
 ``
 MIT LICENSE
