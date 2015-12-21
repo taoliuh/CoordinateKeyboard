@@ -19,6 +19,7 @@ adjustResize, 然后将键盘高度缓存起来。一般来说，用户不会无
 高度差计算出键盘的高度，暂且不说了。
 
 再来看看这个心酸的帖子吧，Oct 9, 2009， 马上都2016了。
+https://code.google.com/p/android/issues/detail?id=4203
 
 ``
 Whole Android development community has been asking YEARS !!! for this for, I just can't believe that we gotta look for hacks instead a proper API call.
