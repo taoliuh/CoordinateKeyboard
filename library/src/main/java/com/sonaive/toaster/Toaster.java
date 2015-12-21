@@ -22,7 +22,7 @@ import android.widget.FrameLayout;
  * Created by liutao on 12/19/15.
  */
 public class Toaster {
-    private static final int ANIMATION_DURATION = 350;
+    private static final int ANIMATION_DURATION = 300;
     private static final Interpolator LINEAR_INTERPOLATOR = new LinearInterpolator();
 
     private static boolean isShown;
